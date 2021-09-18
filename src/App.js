@@ -21,12 +21,17 @@ const App = () => {
   async function _onApprove(data, actions) {
     let order = await actions.order.capture();
     console.log(order);
+    window.ReactNativeWebView && 
+      window.ReactNativeWebView.postMessage(JSON.stringify(order))
     return order;
   }
 
   //:@ If error
   function _onError(err) {
     console.log(err);
+    let errObj = {err, status: 'FAILED'}
+    window.ReactNativeWebView && 
+      window.ReactNativeWebView.postMessage(JSON.stringify(errObj))
   }
 
   return (
