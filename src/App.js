@@ -6,7 +6,7 @@ import Home from './pages/Home';
 const App = () => {
   return (
     <Switch>
-      <Route path="/:amount" component={Home}/>
+      <Route path="/" component={Home}/>
     </Switch>
   )
 }

@@ -3,20 +3,22 @@ import ReactDOM from "react-dom";
 
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
-const Home = ({match}) => {
-  const {amount} = match.params;
+const Home = ({location}) => {
+  const amount = location.search.split("=")[1];
 
   //@: create order 
   function _createOrder(data, actions) {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: amount,
+    if(amount){
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: amount,
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    }
   }
 
   //@: After a success payment
